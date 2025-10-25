@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // WARNING: PASTE YOUR API KEY HERE.
   // This is NOT secure for a real website, but is OK for a hackathon demo.
   // DO NOT share this key publicly.
-  const API_KEY = "AIzaSyCoPXekgaD4mFck7GMQkljBKcScjwk29gM";
-  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
   // Your "pre-generated" sprite database
   // Add more species and their aliases
