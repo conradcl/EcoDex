@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoDex</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <h1>EcoDex: Your Local Wildlife ID</h1>
+
+    <div class="controls">
+      <button id="startCameraButton">Start Camera</button>
+
+      <label for="imageUploader" class="upload-button">Upload Photo</label>
+      <input type="file" id="imageUploader" accept="image/*" />
+    </div>
+
+    <div id="cameraView" class="camera-view hidden">
+      <video id="videoFeed" autoplay playsinline></video>
+      <button id="takePictureButton">Take Picture</button>
+    </div>
+
+    <canvas id="imageCanvas" class="hidden"></canvas>
+
+    <div id="loader" class="hidden">
+      <p>Identifying...</p>
+    </div>
+
+    <div id="resultsSection" class="hidden">
+      <img id="previewImage" alt="Your Image" />
+      
+      <img id="pokemonSprite" alt="EcoDex Sprite" />
+      
+      <h2 id="commonName"></h2>
+      <p><em>(<span id="speciesName"></span>)</em></p>
+      <div id="statusTag"></div>
+      <p id="description"></p>
+    </div>
+
+    <h2>My Sightings</h2>
+    <div id="galleryContainer">
+      </div>
+  </body>
+</html>
