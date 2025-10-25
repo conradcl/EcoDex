@@ -1,7 +1,8 @@
 // Wait for the HTML document to be fully loaded before running code
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. SET UP YOUR API KEY AND DEMO DATA ---
 
+  // --- 1. SET UP YOUR API KEY AND DEMO DATA ---
+  const API_URL = "/api/gemini";
   // WARNING: PASTE YOUR API KEY HERE.
   // This is NOT secure for a real website, but is OK for a hackathon demo.
   // DO NOT share this key publicly.
@@ -157,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         The JSON must follow this exact structure:
         {"species_name": "Scientific Name", "common_name": "Common Name", "status": "Native/Invasive/Endangered/Common", "description": "Your 1-2 sentence description."}
       `;
-
+    /*
     const body = {
       contents: [
         {
@@ -173,7 +174,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       ],
     };
-
+    */
+    const body = { prompt };
+    
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {

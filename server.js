@@ -13,6 +13,7 @@ app.use(express.json());
 app.post("/api/gemini", async (req, res) => {
   try {
     const { prompt } = req.body;
+    console.log("Received prompt:", prompt);
 
     // Initialize Gemini with your secret key
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
