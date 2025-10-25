@@ -148,16 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pureBase64 = imageBase64.split(",")[1];
 
     // This is your "magic prompt" - I've set it to your location.
-    const prompt = `
-        You are an expert biologist and ecologist for State College, Pennsylvania.
-        1. Identify the primary species in this image.
-        2. Determine if this species is Native, Invasive, or Endangered in Pennsylvania. If none of those, label it 'Common'.
-        3. Provide a 1-2 sentence description explaining its role or impact in this local ecosystem.
-        
-        Respond ONLY with a valid JSON object. Do not include \`\`\`json or any other text.
-        The JSON must follow this exact structure:
-        {"species_name": "Scientific Name", "common_name": "Common Name", "status": "Native/Invasive/Endangered/Common", "description": "Your 1-2 sentence description."}
-      `;
+    const prompt = "what is 5*5 and and a ASCII smiley face after!";
     /*
     const body = {
       contents: [
@@ -195,13 +186,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const data = await response.json();
-
+    console.log("Raw server response:", data);
+    /*
     // The response is complex, we need to dig for the JSON text
     // This line is very important!
     const jsonText = data.candidates[0].content.parts[0].text;
     return JSON.parse(jsonText);
+    */
+    return data.text;
   }
 
+  function displayResults(data) {
+    loader.classList.add("hidden");
+    resultsSection.classList.remove("hidden");
+  
+    // Show the AI response directly
+    commonNameEl.textContent = data;  // "Hello!" will appear here
+    speciesNameEl.textContent = "";
+    descriptionEl.textContent = "";
+    statusTagEl.textContent = "";
+    pokemonSprite.src = defaultSprite;
+  }
+  /*
   function displayResults(data) {
     // Get the sprite from our "database"
     const nameKey = data.common_name.toLowerCase();
@@ -221,9 +227,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loader.classList.add("hidden");
     resultsSection.classList.remove("hidden");
   }
-
+  */
   // --- 6. GALLERY FUNCTIONS (using localStorage) ---
-
+  /*
   function saveToGallery(data) {
     // Get the sprite URL again
     const nameKey = data.common_name.toLowerCase();
@@ -275,4 +281,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Load the gallery as soon as the page loads
   loadGallery();
+  */
 });
