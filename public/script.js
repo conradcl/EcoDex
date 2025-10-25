@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function callGeminiAPI(imageBase64) {
-    const prompt = "Identify this animal and return JSON with its name, species, status, and description.";
+    const prompt = "Identify this plant or animal and return JSON with its name, species, status, and description.";
 
     const response = await fetch(API_URL, {
       method: "POST",
