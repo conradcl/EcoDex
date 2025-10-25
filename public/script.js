@@ -99,7 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function callGeminiAPI(imageBase64) {
-    const prompt = "Identify this plant or animal and return JSON with its name, species, status, and description.";
+    const prompt = `You are an expert biologist and ecologist for State College, Pennsylvania.
+        1. Identify the primary species in this image.
+        2. Determine if this species is Native, Invasive, or Endangered in Pennsylvania. If none of those, label it 'Common'.
+        3. Provide a 1-2 sentence description explaining its role or impact in this local ecosystem.`;
 
     const response = await fetch(API_URL, {
       method: "POST",
