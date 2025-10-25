@@ -5,28 +5,77 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const app = express();
 const port = 3000;
 
-// Middleware
-app.use(express.static("public"));  // serves index.html etc.
-app.use(express.json());
+app.use(express.static("public"));
+app.use(express.json({ limit: "10mb" })); // allow large image uploads
 
-// API route for Gemini
+// --- Gemini API route ---
 app.post("/api/gemini", async (req, res) => {
   try {
-    const { prompt } = req.body;
-    console.log("Received prompt:", prompt);
+    const { prompt, imageBase64 } = req.body;
+    console.log("📩 Received request for:", prompt);
 
-    // Initialize Gemini with your secret key
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    const result = await model.generateContent(prompt);
-    res.json({ text: result.response.text() });
+    // --- Build combined text + image request ---
+    const result = await model.generateContent({
+      contents: [
+        {
+          parts: [
+            {
+              text: `${prompt}. Please respond ONLY in pure JSON format like:
+              {
+                "common_name": "Eastern Gray Squirrel",
+                "species_name": "Sciurus carolinensis",
+                "status": "Least Concern",
+                "description": "A medium-sized tree squirrel native to eastern North America."
+              }`,
+            },
+            imageBase64
+              ? {
+                  inlineData: {
+                    mimeType: "image/jpeg",
+                    data: imageBase64,
+                  },
+                }
+              : null,
+          ].filter(Boolean),
+        },
+      ],
+    });
+
+    const response = await result.response;
+    const text = response.text();
+
+    // --- 🧹 Clean and parse Gemini output ---
+    let cleaned = text
+      .replace(/```json/i, "") // remove ```json
+      .replace(/```/g, "") // remove ```
+      .trim();
+
+    // Remove any extra non-JSON text (keep between { ... })
+    const jsonMatch = cleaned.match(/{[\s\S]*}/);
+    if (jsonMatch) cleaned = jsonMatch[0];
+
+    let parsed;
+    try {
+      parsed = JSON.parse(cleaned);
+    } catch (e) {
+      console.warn("⚠️ Failed to parse JSON. Returning raw text instead.");
+      parsed = {
+        common_name: "Unknown",
+        species_name: "",
+        status: "",
+        description: text,
+      };
+    }
+
+    res.json(parsed);
   } catch (error) {
-    console.error("Gemini error:", error);
-    res.status(500).json({ error: "Gemini request failed" });
+    console.error("❌ Gemini error:", error);
+    res.status(500).json({ error: error.message || "Gemini request failed" });
   }
 });
-
-app.listen(port, () => {
-  console.log(`✅ Server running at http://localhost:${port}`);
-});
+app.listen(port, () =>
+  console.log(`✅ EcoDex server running at http://localhost:${port}`)
+);
