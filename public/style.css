@@ -140,7 +140,7 @@ video {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-top: 20px;
-    max-width: 800px; /* Keep or adjust max-width as needed */
+    max-width: 600px; 
     box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
@@ -257,7 +257,7 @@ video {
 
     /* Keep existing styles */
     width: 90%;
-    max-width: 800px; /* Your desired max-width */
+    max-width: 600px;
     padding: 20px;
     border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
