@@ -8,7 +8,11 @@ body {
   padding: 20px;
   overflow-x: hidden;
   overflow-y: hidden;
-  background-color: #f4f4f4;
+  background-image: url('images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
   color: #333;
 
 }
@@ -210,7 +214,7 @@ video {
 
 .detail-section img {
     width: 90%;
-    max-height: 30vh;
+    max-height: 20vh;
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -239,5 +243,7 @@ video {
 .image-button img {
   display: block;
   height: auto;
-  width: auto;
+  width: 320px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }

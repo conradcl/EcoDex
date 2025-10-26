@@ -39,6 +39,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // } else {
     //     sightingLocationEl.textContent = "Not recorded";
     // }
+    const backButtonDetail = document.getElementById("backButtonDetail");
+        backButtonDetail.addEventListener("click", () => {
+        window.location.href = "gallery.html";
+    });
+
+    function setupImageButtonPressState(button) {
+        const img = button?.querySelector('img');
+        if (!img) return;
+    
+        const defaultSrc = img.dataset.defaultSrc || img.src;
+        const pressedSrc = img.dataset.pressedSrc || defaultSrc;
+    
+        const setPressed = () => { img.src = pressedSrc; };
+        const setDefault = () => { img.src = defaultSrc; };
+    
+        button.addEventListener('mousedown', setPressed);
+        button.addEventListener('touchstart', setPressed, { passive: true });
+        button.addEventListener('mouseup', setDefault);
+        button.addEventListener('mouseleave', setDefault);
+        button.addEventListener('touchend', setDefault);
+        button.addEventListener('touchcancel', setDefault);
+
+        // --- Hover events (added) ---
+        button.addEventListener('mouseenter', setPressed);
+        button.addEventListener('mouseleave', setDefault);
+    }
+
+    setupImageButtonPressState(backButtonDetail);
 
     // Clean up sessionStorage after loading
     // sessionStorage.removeItem("selectedSighting"); // Optional: remove if you don't need it anymore
