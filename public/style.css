@@ -137,7 +137,43 @@ video {
     font-weight: bold;
 }
 
+/* --- In style.css --- */
 
+/* Make gallery items look clickable */
+.gallery-item.clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.gallery-item.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Styles for the detail page */
+.detail-section {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px auto;
+}
+
+.detail-section img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #eee; /* Add a light border */
+}
+
+.sighting-info {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 15px;
+}
 /* --- Utility Class --- */
 .hidden {
   display: none !important;
