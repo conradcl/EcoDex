@@ -9,6 +9,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     const descriptionEl = document.getElementById("description");
     const backButton = document.getElementById("backButton");
 
+    function setupImageButtonPressState(button) {
+        const img = button?.querySelector('img');
+        if (!img) return;
+    
+        const defaultSrc = img.dataset.defaultSrc || img.src;
+        const pressedSrc = img.dataset.pressedSrc || defaultSrc;
+    
+        const setPressed = () => { img.src = pressedSrc; };
+        const setDefault = () => { img.src = defaultSrc; };
+    
+        button.addEventListener('mousedown', setPressed);
+        button.addEventListener('touchstart', setPressed, { passive: true });
+        button.addEventListener('mouseup', setDefault);
+        button.addEventListener('mouseleave', setDefault);
+        button.addEventListener('touchend', setDefault);
+        button.addEventListener('touchcancel', setDefault);
+
+        // --- Hover events (added) ---
+        button.addEventListener('mouseenter', setPressed);
+        button.addEventListener('mouseleave', setDefault);
+    }
+
+    // --- Set up back button as image-button ---
+    if (backButton) {
+        backButton.addEventListener("click", () => {
+            localStorage.removeItem("pendingImage");
+            window.location.href = "index.html";
+        });
+        if (typeof setupImageButtonPressState === "function") {
+            setupImageButtonPressState(backButton);
+        }
+    } else {
+        console.error("Back button not found!");
+    }
+
     // Get image data from localStorage (as set by index.js)
     const imageData = localStorage.getItem("pendingImage");
     if (!imageData) {
@@ -88,10 +123,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem("ecoDexGallery", JSON.stringify(gallery));
         console.log("Saved to gallery:", gallery[gallery.length - 1].name);
     }
-
-    // Back button → Home
-    backButton.addEventListener("click", () => {
-        localStorage.removeItem("pendingImage");
-        window.location.href = "index.html";
-    });
 });

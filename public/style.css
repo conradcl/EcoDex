@@ -138,9 +138,13 @@ video {
   margin-top: 20px;
 }
 
+#resultsSection + .image-button {
+  margin-top: 20px;
+}
+
 #previewImage {
   width: 90%;
-  max-height: 30vh;
+  max-height: 20vh;
   object-fit: contain;
   border-radius: 8px;
   margin-bottom: 15px;
@@ -187,6 +191,20 @@ video {
     margin: 5px 0 0 0;
     font-size: 0.9em;
     font-weight: bold;
+}
+
+/*
+#galleryContainer + .image-button {
+  margin-top: 20px;
+}
+  ----- after clear button is removed, prob need this -----
+*/
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
 }
 
 /* --- In style.css --- */

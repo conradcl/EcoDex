@@ -144,14 +144,6 @@ function stopCameraView() {
   button.addEventListener('touchend', setDefault);
   button.addEventListener('touchcancel', setDefault);
 
-  // --- Keyboard press events ---
-  button.addEventListener('keydown', (e) => {
-    if (e.key === ' ' || e.key === 'Enter') setPressed();
-  });
-  button.addEventListener('keyup', (e) => {
-    if (e.key === ' ' || e.key === 'Enter') setDefault();
-  });
-
   // --- Hover events (added) ---
   button.addEventListener('mouseenter', setPressed);
   button.addEventListener('mouseleave', setDefault);
