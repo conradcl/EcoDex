@@ -31,9 +31,11 @@
 
   // --- Camera & Upload Functions ---
 // --- Start Camera ---
+// --- Start Camera ---
 async function startCamera() {
-  // Hide only the location button
+  // Hide only the location and profile buttons
   document.getElementById("updateLocationButton").classList.add("hidden");
+  document.getElementById("viewProfileButton").classList.add("hidden");
 
   startButton.classList.add("hidden");
   uploadInput.parentElement.classList.add("hidden");
@@ -54,6 +56,7 @@ async function startCamera() {
     uploadInput.parentElement.classList.remove("hidden");
     viewGalleryButton.classList.remove("hidden");
     document.getElementById("updateLocationButton").classList.remove("hidden");
+    document.getElementById("viewProfileButton").classList.remove("hidden");
   }
 }
 
@@ -65,11 +68,10 @@ function stopCameraView() {
   uploadInput.parentElement.classList.remove("hidden");
   viewGalleryButton.classList.remove("hidden");
 
-  // Re-show location button when camera closes
+  // Re-show location and profile buttons when camera closes
   document.getElementById("updateLocationButton").classList.remove("hidden");
+  document.getElementById("viewProfileButton").classList.remove("hidden");
 }
-
-
 
   function takePicture() {
     canvas.width = video.videoWidth;
