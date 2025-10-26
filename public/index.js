@@ -1,25 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Get elements
+  // --- Prompt for location immediately when site loads ---
+  requestUserLocation();
+
+  // --- Element references ---
   const startButton = document.getElementById("startCameraButton");
   const uploadInput = document.getElementById("imageUploader");
   const viewGalleryButton = document.getElementById("viewGalleryButton");
+  const updateLocationButton = document.getElementById("updateLocationButton");
   const cameraView = document.getElementById("cameraView");
   const video = document.getElementById("videoFeed");
   const takePicButton = document.getElementById("takePictureButton");
   const canvas = document.getElementById("imageCanvas");
 
-  // Event listeners
+  // --- Event listeners ---
   startButton.addEventListener("click", startCamera);
   takePicButton.addEventListener("click", takePicture);
   uploadInput.addEventListener("change", handleFileUpload);
   viewGalleryButton.addEventListener("click", () => {
-    window.location.href = "gallery.html"; // Go to gallery page
+    window.location.href = "gallery.html";
   });
+  updateLocationButton.addEventListener("click", requestUserLocation); // 🆕 manual re-prompt
 
   // --- Camera & Upload Functions ---
   async function startCamera() {
     startButton.classList.add("hidden");
-    uploadInput.parentElement.classList.add("hidden"); // Hide entire controls div might be better
+    uploadInput.parentElement.classList.add("hidden");
     viewGalleryButton.classList.add("hidden");
 
     try {
@@ -31,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       console.error("Error accessing camera:", err);
       alert("Could not access camera. Check permissions.");
-      // Show controls again
       startButton.classList.remove("hidden");
       uploadInput.parentElement.classList.remove("hidden");
       viewGalleryButton.classList.remove("hidden");
@@ -45,13 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageDataBase64 = canvas.toDataURL("image/jpeg");
 
-    // Stop camera and hide view
-    video.srcObject?.getTracks().forEach((track) => track.stop()); // Optional chaining for safety
+    // Stop camera
+    video.srcObject?.getTracks().forEach((track) => track.stop());
     cameraView.classList.add("hidden");
 
-    // Pass image data to results page via localStorage
+    // Save photo to localStorage and redirect
     localStorage.setItem("pendingImage", imageDataBase64);
-    window.location.href = "results.html"; // Redirect to results page
+    window.location.href = "results.html";
   }
 
   function handleFileUpload(event) {
@@ -61,10 +65,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const reader = new FileReader();
     reader.onload = (e) => {
       const imageDataBase64 = e.target.result;
-      // Pass image data to results page via localStorage
       localStorage.setItem("pendingImage", imageDataBase64);
-      window.location.href = "results.html"; // Redirect to results page
+      window.location.href = "results.html";
     };
     reader.readAsDataURL(file);
+  }
+
+  // --- Location request logic (used on load + button click) ---
+  function requestUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude, accuracy } = pos.coords;
+          localStorage.setItem(
+            "userLocation",
+            JSON.stringify({
+              lat: latitude,
+              lon: longitude,
+              accuracy: Math.round(accuracy ?? 0),
+            })
+          );
+          console.log("📍 Location stored:", latitude, longitude);
+          alert("✅ Location updated!");
+        },
+        (err) => {
+          console.warn("⚠️ Location permission denied or unavailable:", err);
+          alert("⚠️ Could not update location. Please enable permissions.");
+        },
+        { enableHighAccuracy: true, timeout: 7000, maximumAge: 0 }
+      );
+    } else {
+      console.warn("❌ Geolocation not supported in this browser.");
+      alert("❌ Geolocation not supported in this browser.");
+    }
   }
 });
