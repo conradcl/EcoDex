@@ -71,28 +71,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     statusTagEl.className = "status-" + (data.status || "unknown").toLowerCase();
   }
 
-  // Save entry including geolocation
+  // Save entry (with geolocation silently)
   function saveToGalleryWithLocation(data) {
     const nameKey = (data.common_name || "unknown").toLowerCase();
     const spriteURL = spriteDatabase[nameKey] || defaultSprite;
     const imageData = localStorage.getItem("pendingImage");
 
-    // Request geolocation
+    // Attempt to get location (optional)
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords;
         saveEntry(data, spriteURL, imageData, latitude, longitude);
       },
-      (err) => {
-        console.warn("⚠️ Location not available:", err.message);
-        saveEntry(data, spriteURL, imageData, null, null); // save anyway
+      () => {
+        // Save without location if permission denied
+        saveEntry(data, spriteURL, imageData, null, null);
       }
     );
 
-    // Helper: store entry in localStorage
     function saveEntry(data, spriteURL, imageData, lat, lon) {
       let gallery = JSON.parse(localStorage.getItem("ecoDexGallery")) || [];
-
       gallery.push({
         name: data.common_name || "Unknown",
         spriteUrl: spriteURL,
@@ -101,7 +99,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         longitude: lon,
         date: new Date().toISOString(),
       });
-
       localStorage.setItem("ecoDexGallery", JSON.stringify(gallery));
     }
   }

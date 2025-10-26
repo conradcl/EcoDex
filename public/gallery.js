@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index.html";
   });
 
-  // ✅ Optional: "Clear All" for testing
+  // ✅ Optional: Clear All Sightings
   const clearButton = document.createElement("button");
   clearButton.textContent = "🗑️ Clear All Sightings";
   clearButton.style.backgroundColor = "#d32f2f";
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "gallery-item";
 
-      // User photo (uploaded/taken image)
+      // User photo
       if (item.userImage) {
         const photo = document.createElement("img");
         photo.src = item.userImage;
@@ -67,15 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
       date.style.fontSize = "0.8em";
       date.style.color = "#666";
       div.appendChild(date);
-
-      // 📍 Coordinates (if available)
-      if (item.latitude && item.longitude) {
-        const loc = document.createElement("p");
-        loc.textContent = `📍 ${item.latitude.toFixed(4)}, ${item.longitude.toFixed(4)}`;
-        loc.style.fontSize = "0.8em";
-        loc.style.color = "#555";
-        div.appendChild(loc);
-      }
 
       galleryContainer.appendChild(div);
     });
