@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // API URL defined on the server, not needed here directly for the call
-    // const API_URL = "/api/gemini";
-
     // Get necessary elements
     const loader = document.getElementById("loader");
     const resultsSection = document.getElementById("resultsSection");
@@ -24,18 +21,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         console.log("Sending image to server for identification...");
-        // Send image data to your server's API endpoint
-        const response = await fetch("/api/gemini", { // Use relative path
+        // Send image data and prompt to your server's API endpoint
+        const response = await fetch("/api/gemini", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                // server.js expects imageBase64
-                imageBase64: imageData.split(",")[1],
+                prompt:
+                    "Identify the primary species in this image. Determine if this species is Native, Invasive, or Endangered in the given location. If none of those, label it 'Common'.Provide a 1-2 sentence description explaining its role or impact in this local ecosystem.",
+                imageBase64: imageData.split(",")[1], // Remove data:image/jpeg;base64,
             }),
         });
 
         if (!response.ok) {
-            // Try to get error message from server response
             let errorMsg = `HTTP error! status: ${response.status}`;
             try {
                 const errData = await response.json();
@@ -49,56 +46,52 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await response.json();
         console.log("Received data from server:", data);
         displayResults(data);
-        saveToGallery(data); // Save results (including new fields)
+        saveToGallery(data);
 
     } catch (err) {
         alert("Error identifying image. See console for details.");
         console.error("Identification Error:", err);
-        loader.innerHTML = "<p>Error identifying image. Please try again.</p>"; // Update loader text
-        resultsSection.classList.add("hidden"); // Ensure results are hidden on error
+        loader.innerHTML = "<p>Error identifying image. Please try again.</p>";
+        resultsSection.classList.add("hidden");
     }
 
-    // Display Gemini results (simplified, no sprites)
+    // Display Gemini results
     function displayResults(data) {
-        loader.classList.add("hidden"); // Hide loader
-        resultsSection.classList.remove("hidden"); // Show results
+        loader.classList.add("hidden");
+        resultsSection.classList.remove("hidden");
 
         commonNameEl.textContent = data.common_name || "Unknown Species";
         speciesNameEl.textContent = data.species_name || "";
         statusTagEl.textContent = data.status || "N/A";
         descriptionEl.textContent = data.description || "No description available.";
 
-        // Update status tag class for styling
         statusTagEl.className = "status-" + (data.status || "unknown").toLowerCase();
     }
 
-    // --- UPDATED saveToGallery ---
-    // Save entry including species_name, status, description
+    // Save entry to gallery (including species_name, status, description)
     function saveToGallery(data) {
-        // Basic check if data seems valid
         if (!data || !data.common_name) {
             console.error("Invalid data received, cannot save to gallery:", data);
             return;
         }
-        const imageData = localStorage.getItem("pendingImage"); // Get user image again
+        const imageData = localStorage.getItem("pendingImage");
 
         let gallery = JSON.parse(localStorage.getItem("ecoDexGallery")) || [];
         gallery.push({
             name: data.common_name || "Unknown",
-            species_name: data.species_name || "", // Save scientific name
-            status: data.status || "N/A",         // Save status
-            description: data.description || "", // Save description
-            userImage: imageData,                 // Save the user's original image
+            species_name: data.species_name || "",
+            status: data.status || "N/A",
+            description: data.description || "",
+            userImage: imageData,
             date: new Date().toISOString(),
         });
         localStorage.setItem("ecoDexGallery", JSON.stringify(gallery));
-        console.log("Saved to gallery:", gallery[gallery.length-1].name);
+        console.log("Saved to gallery:", gallery[gallery.length - 1].name);
     }
-    // --- End of UPDATE ---
 
     // Back button → Home
     backButton.addEventListener("click", () => {
-        localStorage.removeItem("pendingImage"); // Clean up temp image data
+        localStorage.removeItem("pendingImage");
         window.location.href = "index.html";
     });
 });
