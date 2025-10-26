@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDex Sighting Detail</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="detail.js" defer></script>
+</head>
+<body>
+    <!-- Link back to the gallery page -->
+    <a href="gallery.html" class="back-button">&larr; Back to Gallery</a>
+
+    <h1>Sighting Details</h1>
+
+    <div id="detailSection" class="detail-section">
+        <!-- Display the user's original photo -->
+        <img id="userImage" alt="User Sighting Image" />
+
+        <h2 id="commonName">Loading...</h2>
+        <p><em>(<span id="speciesName"></span>)</em></p>
+        <div id="statusTag"></div>
+        <p id="description"></p>
+        <p class="sighting-info">Sighted on: <span id="sightingDate"></span></p>
+        <!-- Optional: Add a placeholder for location if you implement that -->
+        <!-- <p class="sighting-info">Location: <span id="sightingLocation"></span></p> -->
+    </div>
+
+</body>
+</html>
