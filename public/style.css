@@ -33,23 +33,14 @@ h1, h2 {
   gap: 15px;
 }
 
-/* --- Big Square Camera Button --- */
-.big-square {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* makes it a square */
-  font-size: 1.3rem;
-  font-weight: bold;
-  background-color: #007aff;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.big-square:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+/* --- Camera Button (Left Side, PNG Style) --- */
+#startCameraButton img {
+  width: 360px;  /* adjust as needed (try 320–400px for big square) */
+  height: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: transform 0.15s ease-in-out;
 }
 
 /* --- Upload Button Below It --- */
@@ -79,7 +70,7 @@ h1, h2 {
 
 /* Make image buttons same size visually */
 .right-controls .image-button img {
-  width: 240px; 
+  width: 360px; 
   height: auto;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
@@ -252,5 +243,5 @@ video {
   display: block;
   height: auto;
   width: auto;
-  max-height: 56px;
+  /*max-height: 56px; */
 }

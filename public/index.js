@@ -85,18 +85,18 @@
               accuracy: Math.round(accuracy ?? 0),
             })
           );
-          console.log("ðŸ“ Location stored:", latitude, longitude);
-          if (showAlert) alert("âœ… Location updated!");
+          console.log("Location stored:", latitude, longitude);
+          if (showAlert) alert("Location updated!");
         },
         (err) => {
-          console.warn("âš ï¸ Location permission denied or unavailable:", err);
-          if (showAlert) alert("âš ï¸ Could not update location. Please enable permissions.");
+          console.warn("Location permission denied or unavailable:", err);
+          if (showAlert) alert("Could not update location. Please enable permissions.");
         },
         { enableHighAccuracy: true, timeout: 7000, maximumAge: 0 }
       );
     } else {
-      console.warn("âŒ Geolocation not supported in this browser.");
-      if (showAlert) alert("âŒ Geolocation not supported in this browser.");
+      console.warn("Geolocation not supported in this browser.");
+      if (showAlert) alert("Geolocation not supported in this browser.");
     }
   }
 
@@ -135,4 +135,7 @@
 
   // Initialize pressed-state behavior for image buttons
   setupImageButtonPressState(viewGalleryButton);
-  setupImageButtonPressState(updateLocationButton);});
+  setupImageButtonPressState(updateLocationButton);
+  setupImageButtonPressState(startButton);
+});
+  

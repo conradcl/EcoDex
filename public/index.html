@@ -12,7 +12,14 @@
 
     <div class="controls-grid">
       <div class="left-controls">
-        <button id="startCameraButton" class="big-square">Start Camera</button>
+        <button id="startCameraButton" class="image-button" aria-label="Start Camera">
+          <img
+            src="/images/photo-button.png"
+            alt="Start Camera"
+            data-default-src="/images/photo-button.png"
+            data-pressed-src="/images/photo-button-pressed.png"
+          />
+        </button>
     
         <label for="imageUploader" class="upload-button wide">Upload Photo</label>
         <input type="file" id="imageUploader" accept="image/*" />
