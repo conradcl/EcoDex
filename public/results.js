@@ -49,12 +49,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const data = await response.json();
     displayResults(data);
-    saveToGallery(data);
+    saveToGalleryWithLocation(data);
   } catch (err) {
     alert("Error identifying image. Check console.");
     console.error(err);
   }
 
+  // Display Gemini results
   function displayResults(data) {
     loader.classList.add("hidden");
     resultsSection.classList.remove("hidden");
@@ -70,23 +71,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     statusTagEl.className = "status-" + (data.status || "unknown").toLowerCase();
   }
 
-  function saveToGallery(data) {
+  // Save entry including geolocation
+  function saveToGalleryWithLocation(data) {
     const nameKey = (data.common_name || "unknown").toLowerCase();
     const spriteURL = spriteDatabase[nameKey] || defaultSprite;
     const imageData = localStorage.getItem("pendingImage");
 
-    let gallery = JSON.parse(localStorage.getItem("ecoDexGallery")) || [];
+    // Request geolocation
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        saveEntry(data, spriteURL, imageData, latitude, longitude);
+      },
+      (err) => {
+        console.warn("⚠️ Location not available:", err.message);
+        saveEntry(data, spriteURL, imageData, null, null); // save anyway
+      }
+    );
 
-    gallery.push({
-      name: data.common_name || "Unknown",
-      spriteUrl: spriteURL,
-      userImage: imageData,
-      date: new Date().toISOString(),
-    });
+    // Helper: store entry in localStorage
+    function saveEntry(data, spriteURL, imageData, lat, lon) {
+      let gallery = JSON.parse(localStorage.getItem("ecoDexGallery")) || [];
 
-    localStorage.setItem("ecoDexGallery", JSON.stringify(gallery));
+      gallery.push({
+        name: data.common_name || "Unknown",
+        spriteUrl: spriteURL,
+        userImage: imageData,
+        latitude: lat,
+        longitude: lon,
+        date: new Date().toISOString(),
+      });
+
+      localStorage.setItem("ecoDexGallery", JSON.stringify(gallery));
+    }
   }
 
+  // Back button → Home
   backButton.addEventListener("click", () => {
     localStorage.removeItem("pendingImage");
     window.location.href = "index.html";

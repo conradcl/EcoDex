@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryContainer = document.getElementById("galleryContainer");
   const backButton = document.getElementById("backButton");
 
-  // ✅ Back to Home button
+  // ✅ Back to Home
   backButton.addEventListener("click", () => {
     window.location.href = "index.html";
   });
 
-  // ✅ Optional: Clear All Sightings button (for testing)
+  // ✅ Optional: "Clear All" for testing
   const clearButton = document.createElement("button");
   clearButton.textContent = "🗑️ Clear All Sightings";
   clearButton.style.backgroundColor = "#d32f2f";
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.body.insertBefore(clearButton, backButton);
 
-  // ✅ Load gallery from localStorage
+  // ✅ Load and display gallery
   function loadGallery() {
     const gallery = JSON.parse(localStorage.getItem("ecoDexGallery")) || [];
     galleryContainer.innerHTML = "";
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "gallery-item";
 
-      // User photo (the uploaded/taken image)
+      // User photo (uploaded/taken image)
       if (item.userImage) {
         const photo = document.createElement("img");
         photo.src = item.userImage;
@@ -48,14 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
         div.appendChild(photo);
       }
 
-      // Sprite icon (e.g., robin, squirrel)
+      // Sprite icon
       const sprite = document.createElement("img");
       sprite.src = item.spriteUrl;
       sprite.alt = `${item.name} sprite`;
       sprite.className = "sprite-icon";
       div.appendChild(sprite);
 
-      // Species name label
+      // Species name
       const p = document.createElement("p");
       p.textContent = item.name;
       div.appendChild(p);
@@ -68,10 +68,18 @@ document.addEventListener("DOMContentLoaded", () => {
       date.style.color = "#666";
       div.appendChild(date);
 
+      // 📍 Coordinates (if available)
+      if (item.latitude && item.longitude) {
+        const loc = document.createElement("p");
+        loc.textContent = `📍 ${item.latitude.toFixed(4)}, ${item.longitude.toFixed(4)}`;
+        loc.style.fontSize = "0.8em";
+        loc.style.color = "#555";
+        div.appendChild(loc);
+      }
+
       galleryContainer.appendChild(div);
     });
   }
 
-  // ✅ Initial load
   loadGallery();
 });
