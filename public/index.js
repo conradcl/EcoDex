@@ -26,25 +26,46 @@
   });
 
   // --- Camera & Upload Functions ---
-  async function startCamera() {
-    startButton.classList.add("hidden");
-    uploadInput.parentElement.classList.add("hidden");
-    viewGalleryButton.classList.add("hidden");
+// --- Start Camera ---
+async function startCamera() {
+  // Hide only the location button
+  document.getElementById("updateLocationButton").classList.add("hidden");
 
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" },
-      });
-      video.srcObject = stream;
-      cameraView.classList.remove("hidden");
-    } catch (err) {
-      console.error("Error accessing camera:", err);
-      alert("Could not access camera. Check permissions.");
-      startButton.classList.remove("hidden");
-      uploadInput.parentElement.classList.remove("hidden");
-      viewGalleryButton.classList.remove("hidden");
-    }
+  startButton.classList.add("hidden");
+  uploadInput.parentElement.classList.add("hidden");
+  viewGalleryButton.classList.add("hidden");
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" },
+    });
+    video.srcObject = stream;
+    cameraView.classList.remove("hidden");
+  } catch (err) {
+    console.error("Error accessing camera:", err);
+    alert("Could not access camera. Check permissions.");
+
+    // Re-show everything if camera fails
+    startButton.classList.remove("hidden");
+    uploadInput.parentElement.classList.remove("hidden");
+    viewGalleryButton.classList.remove("hidden");
+    document.getElementById("updateLocationButton").classList.remove("hidden");
   }
+}
+
+// --- Stop Camera View ---
+function stopCameraView() {
+  cameraView.classList.add("hidden");
+
+  startButton.classList.remove("hidden");
+  uploadInput.parentElement.classList.remove("hidden");
+  viewGalleryButton.classList.remove("hidden");
+
+  // Re-show location button when camera closes
+  document.getElementById("updateLocationButton").classList.remove("hidden");
+}
+
+
 
   function takePicture() {
     canvas.width = video.videoWidth;
