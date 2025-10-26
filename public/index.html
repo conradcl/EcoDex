@@ -21,8 +21,16 @@
           />
         </button>
     
-        <label for="imageUploader" class="upload-button wide">Upload Photo</label>
-        <input type="file" id="imageUploader" accept="image/*" />
+        <button id="uploadButton" class="image-button" aria-label="Upload Photo">
+          <img
+            src="/images/upload-button.png"
+            alt="Upload Photo"
+            data-default-src="/images/upload-button.png"
+            data-pressed-src="/images/upload-button-pressed.png"
+          />
+        </button>
+        
+        <input type="file" id="imageUploader" accept="image/*" style="display:none" />
       </div>
     
       <div class="right-controls">

@@ -44,19 +44,13 @@ h1, h2 {
 }
 
 /* --- Upload Button Below It --- */
-.upload-button.wide {
-  width: 100%;
-  height: 50%; /* half the height of the square */
-  text-align: center;
-  background-color: #34c759;
-  color: white;
-  font-weight: bold;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#uploadButton img {
+  width: 360px;
+  height: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: transform 0.15s ease-in-out;
 }
 
 /* --- Right Controls --- */
@@ -81,28 +75,6 @@ h1, h2 {
 input[type="file"] {
   display: none;
 }
-
-/* Style the label to look like a button */
-.upload-button {
-  background-color: #007aff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
-}
-
-button {
-  background-color: #007aff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 
 /* --- Camera View --- */
 .camera-view {
@@ -229,6 +201,7 @@ video {
 .hidden {
   display: none !important;
 }
+
 /* --- Image Buttons --- */
 .image-button {
   background: transparent;
@@ -243,5 +216,4 @@ video {
   display: block;
   height: auto;
   width: auto;
-  /*max-height: 56px; */
 }

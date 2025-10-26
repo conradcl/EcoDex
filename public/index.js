@@ -21,6 +21,10 @@
   });
   updateLocationButton.addEventListener("click", () => requestUserLocation(true)); // true = show alert
 
+  uploadButton.addEventListener("click", () => {
+    uploadInput.click();
+  });
+
   // --- Camera & Upload Functions ---
   async function startCamera() {
     startButton.classList.add("hidden");
@@ -137,5 +141,6 @@
   setupImageButtonPressState(viewGalleryButton);
   setupImageButtonPressState(updateLocationButton);
   setupImageButtonPressState(startButton);
+  setupImageButtonPressState(uploadButton);
 });
   
