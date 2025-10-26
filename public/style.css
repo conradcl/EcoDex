@@ -130,13 +130,13 @@ video {
 
 #resultsSection {
     /* Apply semi-transparent background and border */
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
     border: 4px solid #333; /* 4px dark grey border */
 
     /* Keep existing styles */
     width: 90%;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-top: 20px;
@@ -184,12 +184,12 @@ video {
 /* Style for individual items in gallery.html */
 .gallery-item {
     /* Updated Background */
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
     
     /* Added Border */
     border: 4px solid #333; /* 4px dark grey border */
     
-    border-radius: 8px; /* Keep existing rounding */
+    border-radius: 0px; /* Keep existing rounding */
     padding: 10px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     display: flex;
@@ -252,14 +252,14 @@ video {
 /* Styles for the detail page */
 .detail-section {
     /* Apply background and border */
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
     border: 4px solid #333; /* 4px dark grey border */
 
     /* Keep existing styles */
     width: 90%;
     max-width: 800px; /* Your desired max-width */
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 20px auto;
