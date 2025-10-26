@@ -11,6 +11,7 @@
   const video = document.getElementById("videoFeed");
   const takePicButton = document.getElementById("takePictureButton");
   const canvas = document.getElementById("imageCanvas");
+  const viewProfileButton = document.getElementById("viewProfileButton");
 
   // --- Event listeners ---
   startButton.addEventListener("click", startCamera);
@@ -18,6 +19,9 @@
   uploadInput.addEventListener("change", handleFileUpload);
   viewGalleryButton.addEventListener("click", () => {
     window.location.href = "gallery.html";
+  });
+  viewProfileButton.addEventListener("click", () => {
+    window.location.href = "profile.html";
   });
   updateLocationButton.addEventListener("click", () => requestUserLocation(true)); // true = show alert
 
@@ -155,5 +159,6 @@ function stopCameraView() {
   setupImageButtonPressState(updateLocationButton);
   setupImageButtonPressState(startButton);
   setupImageButtonPressState(uploadButton);
+  setupImageButtonPressState(viewProfileButton);
 });
   
