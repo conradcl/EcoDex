@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function loadGallery() {
         let gallery = []; // Initialize as an empty array
-        try {
+        try {//comment
+            
             // Retrieve gallery data from localStorage
             const galleryJSON = localStorage.getItem("ecoDexGallery");
             if (galleryJSON) {
