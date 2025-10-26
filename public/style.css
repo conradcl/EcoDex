@@ -134,7 +134,7 @@ video {
 
 #previewImage {
   width: 90%;
-  max-height: 200px;
+  max-height: 30vh;
   object-fit: contain;
   border-radius: 8px;
   margin-bottom: 15px;
@@ -207,12 +207,12 @@ video {
 }
 
 .detail-section img {
-   width: 90%;
-    max-height: 200px;
+    width: 90%;
+    max-height: 30vh;
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 15px;
-    border: 1px solid #eee; /* Add a light border */
+    border: 1px solid #eee;
 }
 
 .sighting-info {
