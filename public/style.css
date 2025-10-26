@@ -53,6 +53,7 @@ h1, h2 {
   align-items: center;
   justify-content: center;
   gap: 15px;
+  margin-top: 10vh;
 }
 
 /* --- Camera Button (Left Side, PNG Style) --- */
@@ -82,6 +83,7 @@ h1, h2 {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  margin-top: 10vh;
 }
 
 /* Make image buttons same size visually */
@@ -212,7 +214,6 @@ video {
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 15px;
-    border: 1px solid #eee;
 }
 
 .sighting-info {
