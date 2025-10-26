@@ -10,30 +10,33 @@
   <body>
     <h1>EcoDex</h1>
 
-    <div class="controls">
-      <button id="startCameraButton">Start Camera</button>
-
-      <label for="imageUploader" class="upload-button">Upload Photo</label>
-      <input type="file" id="imageUploader" accept="image/*" />
-
-      <button id="viewGalleryButton" class="image-button" aria-label="View My Sightings">
-        <img
-          src="/images/gallery-button.png"
-          alt="View My Sightings"
-          data-default-src="/images/gallery-button.png"
-          data-pressed-src="/images/gallery-button-pressed.png"
-        />
-      </button>
-
-      <!-- New button to manually re-prompt location -->
-      <button id="updateLocationButton" class="image-button" aria-label="Update Location">
-        <img
-          src="/images/location-button.png"
-          alt="Update Location"
-          data-default-src="/images/location-button.png"
-          data-pressed-src="/images/location-button-pressed.png"
-        />
-      </button>
+    <div class="controls-grid">
+      <div class="left-controls">
+        <button id="startCameraButton" class="big-square">Start Camera</button>
+    
+        <label for="imageUploader" class="upload-button wide">Upload Photo</label>
+        <input type="file" id="imageUploader" accept="image/*" />
+      </div>
+    
+      <div class="right-controls">
+        <button id="viewGalleryButton" class="image-button" aria-label="View My Sightings">
+          <img
+            src="/images/gallery-button.png"
+            alt="View My Sightings"
+            data-default-src="/images/gallery-button.png"
+            data-pressed-src="/images/gallery-button-pressed.png"
+          />
+        </button>
+    
+        <button id="updateLocationButton" class="image-button" aria-label="Update Location">
+          <img
+            src="/images/location-button.png"
+            alt="Update Location"
+            data-default-src="/images/location-button.png"
+            data-pressed-src="/images/location-button-pressed.png"
+          />
+        </button>
+      </div>
     </div>
 
     <div id="cameraView" class="camera-view hidden">

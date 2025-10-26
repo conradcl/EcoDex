@@ -63,7 +63,7 @@ app.post("/api/gemini", async (req, res) => {
     try {
       parsed = JSON.parse(cleaned);
     } catch (e) {
-      console.warn("âš ï¸ Failed to parse JSON. Returning raw text instead.");
+      console.warn("Failed to parse JSON. Returning raw text instead.");
       parsed = {
         common_name: "Unknown",
         species_name: "",
@@ -74,10 +74,10 @@ app.post("/api/gemini", async (req, res) => {
 
     res.json(parsed);
   } catch (error) {
-    console.error("âŒ Gemini error:", error);
+    console.error("Gemini error:", error);
     res.status(500).json({ error: error.message || "Gemini request failed" });
   }
 });
 app.listen(port, () =>
-  console.log(`âœ… EcoDex server running at http://localhost:${port}`)
+  console.log(`EcoDex server running at http://localhost:${port}`)
 );

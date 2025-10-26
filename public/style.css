@@ -3,9 +3,7 @@ body {
     Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 600px;
-  margin: 0 auto;
+  align-items: stretch;
   padding: 20px;
   background-color: #f4f4f4;
   color: #333;
@@ -16,11 +14,77 @@ h1, h2 {
   text-align: center;
 }
 
-.controls {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
+/* --- Layout Grid for Controls --- */
+.controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 40px; /* optional: adds breathing room on sides */
 }
+
+/* --- Left Controls --- */
+.left-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* --- Big Square Camera Button --- */
+.big-square {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* makes it a square */
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.big-square:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Upload Button Below It --- */
+.upload-button.wide {
+  width: 100%;
+  height: 50%; /* half the height of the square */
+  text-align: center;
+  background-color: #34c759;
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Right Controls --- */
+.right-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Make image buttons same size visually */
+.right-controls .image-button img {
+  width: 240px; 
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 
 /* Hide the default file input */
 input[type="file"] {
