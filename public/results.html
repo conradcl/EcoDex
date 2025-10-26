@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoDex Results</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="results.js" defer></script>
+  </head>
+  <body>
+    <h1>EcoDex Result</h1>
+
+    <div id="loader">
+      <p>Identifying...</p>
+    </div>
+
+    <div id="resultsSection" class="hidden">
+      <img id="previewImage" alt="Your Image" />
+      <img id="pokemonSprite" alt="EcoDex Sprite" />
+      <h2 id="commonName"></h2>
+      <p><em>(<span id="speciesName"></span>)</em></p>
+      <div id="statusTag"></div>
+      <p id="description"></p>
+
+      <button id="backButton">Back to Home</button>
+    </div>
+  </body>
+</html>
