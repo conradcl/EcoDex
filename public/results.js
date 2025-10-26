@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 prompt:
-                    "Identify the primary species in this image. Determine if this species is Native, Invasive, or Endangered in the given location. If none of those, label it 'Common'.Provide a 1-2 sentence description explaining its role or impact in this local ecosystem.",
+                    "Identify the primary species in this image. Determine if this species is Native, Invasive, or Endangered in the given location. If none of those, label it 'Common'. Provide a 1 sentence description explaining its role or impact in this local ecosystem.",
                 imageBase64: imageData.split(",")[1], // Remove data:image/jpeg;base64,
             }),
         });
