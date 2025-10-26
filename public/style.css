@@ -1,9 +1,10 @@
+/* public/style.css */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: stretch; /* Allow grid to stretch */
   padding: 20px;
   background-color: #f4f4f4;
   color: #333;
@@ -12,245 +13,173 @@ body {
 h1, h2 {
   color: #333;
   text-align: center;
+  margin-bottom: 25px; /* Added margin */
 }
 
 /* --- Layout Grid for Controls --- */
 .controls-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Space between columns */
   width: 100%;
-  margin-top: 20px;
-  padding: 0 40px; /* optional: adds breathing room on sides */
+  max-width: 500px; /* Limit overall width */
+  margin: 20px auto; /* Center the grid */
+  padding: 0 10px; /* Add some side padding */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
-/* --- Left Controls --- */
+/* --- Left Controls Column --- */
 .left-controls {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch; /* Make buttons fill width */
+  justify-content: flex-start; /* Align from top */
   gap: 15px;
 }
 
-/* --- Big Square Camera Button --- */
-.big-square {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* makes it a square */
-  font-size: 1.3rem;
-  font-weight: bold;
-  background-color: #007aff;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.big-square:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* --- Upload Button Below It --- */
-.upload-button.wide {
-  width: 100%;
-  height: 50%; /* half the height of the square */
-  text-align: center;
-  background-color: #34c759;
-  color: white;
-  font-weight: bold;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* --- Right Controls --- */
+/* --- Right Controls Column --- */
 .right-controls {
   display: flex;
   flex-direction: column;
+  align-items: stretch; /* Make buttons fill width */
+  justify-content: flex-start; /* Align from top */
+  gap: 15px;
+}
+
+
+/* --- Image Button Styling (Applied to ALL control buttons now) --- */
+.image-button {
+  background: transparent;
+  border: none;
+  padding: 0; /* Let image define size */
+  cursor: pointer;
+  display: flex; /* Use flex for centering image */
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  transition: transform 0.1s ease;
+  line-height: 0;
+  border-radius: 12px; /* Add rounding for focus */
+  /* Remove fixed sizes, let content dictate or use specific classes */
 }
 
-/* Make image buttons same size visually */
-.right-controls .image-button img {
-  width: 240px; 
-  height: auto;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+.image-button img {
+  display: block;
+  width: 100%; /* Make image fill button width */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 150px; /* Example max height, adjust as needed */
+  object-fit: contain; /* Ensure image fits */
+  image-rendering: auto;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
+/* Specific class styling */
+.big-square img {
+  aspect-ratio: 1 / 1; /* Ensure image area is square if needed */
+  max-height: none; /* Override max-height if needed for square */
+  object-fit: cover; /* Or contain, depending on image */
+}
+.wide img {
+   /* No specific img styles needed if button controls size */
+}
+
+
+/* Hover/Active Feedback */
+.image-button:hover {
+  /* No background change */
+}
+.image-button:active {
+  transform: scale(0.97); /* Slightly less shrink */
+}
+.image-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.4); /* Focus ring */
+}
+
+/* --- REMOVED: Styles for old button/label --- */
+/*
+button { ... }
+.upload-button { ... }
+*/
 
 /* Hide the default file input */
+input[type="file"].hidden,
 input[type="file"] {
-  display: none;
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap;
+  border-width: 0;
+  display: none !important;
 }
-
-/* Style the label to look like a button */
-.upload-button {
-  background-color: #007aff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
-}
-
-button {
-  background-color: #007aff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 
 /* --- Camera View --- */
 .camera-view {
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  width: 100%; position: relative; display: flex; flex-direction: column;
+  align-items: center; gap: 10px; margin-bottom: 20px;
 }
-
 video {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
+  width: 100%; max-width: 400px; border-radius: 8px; border: 2px solid #ddd;
 }
+#takePictureButton { /* Standard button style for camera capture */
+   background-color: #dc3545; color: white; padding: 10px 20px; border-radius: 20px;
+   border: none; font-size: 16px; cursor: pointer; margin-top: 10px;
+}
+#takePictureButton:hover { background-color: #c82333; }
+
+/* --- Utility Class --- */
+.hidden { display: none !important; }
 
 /* --- Results --- */
-#loader {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
+#loader { font-size: 1.2em; font-weight: bold; }
 #resultsSection {
-  width: 90%;
-  padding: 15px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  margin-top: 20px;
+  width: 90%; padding: 15px; background-color: white; border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-align: center;
+  margin-top: 20px; max-width: 500px;
 }
-
 #previewImage {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  margin-bottom: 15px;
+  width: 100%; max-width: 400px; border-radius: 8px; margin-bottom: 15px;
+  image-rendering: auto;
 }
-
 #statusTag {
-  padding: 5px 12px;
-  border-radius: 15px;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 10px;
-  color: white;
+  padding: 5px 12px; border-radius: 15px; font-weight: bold;
+  display: inline-block; margin-bottom: 10px; color: white;
 }
-
-/* --- Status Colors --- */
 .status-invasive { background-color: #d93025; }
 .status-native { background-color: #1e8e3e; }
 .status-endangered { background-color: #f9aa00; color: #333; }
 .status-common { background-color: #5f6368; }
+.status-unknown { background-color: #ccc; color: #333; }
+.status-n\/a { background-color: #ccc; color: #333; }
 
 /* --- Gallery --- */
 #galleryContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    width: 100%; margin-top: 20px;
 }
 .gallery-item {
-    background-color: white;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
+    background-color: white; border-radius: 8px; padding: 10px; text-align: center;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
-.gallery-item img {
-    width: 80px;
-    height: 80px;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-}
-.gallery-item p {
-    margin: 5px 0 0 0;
-    font-size: 0.9em;
-    font-weight: bold;
-}
+.gallery-item img { width: 80px; height: 80px; image-rendering: auto; }
+.gallery-item p { margin: 5px 0 0 0; font-size: 0.9em; font-weight: bold; }
+.gallery-item.clickable { cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.gallery-item.clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
 
-/* --- In style.css --- */
-
-/* Make gallery items look clickable */
-.gallery-item.clickable {
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-.gallery-item.clickable:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
-}
-
-/* Styles for the detail page */
+/* --- Detail Page --- */
 .detail-section {
-    width: 90%;
-    max-width: 500px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: 20px auto;
+    width: 90%; max-width: 500px; padding: 20px; background-color: white;
+    border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; margin: 20px auto;
 }
-
 .detail-section img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #eee; /* Add a light border */
+    width: 100%; max-width: 400px; border-radius: 8px; margin-bottom: 15px;
+    border: 1px solid #eee; image-rendering: auto;
 }
+.sighting-info { font-size: 0.9em; color: #555; margin-top: 15px; }
 
-.sighting-info {
-    font-size: 0.9em;
-    color: #555;
-    margin-top: 15px;
+/* Back Button */
+.back-button {
+  display: inline-block; margin-bottom: 20px; padding: 8px 15px;
+  background-color: #eee; color: #333; text-decoration: none;
+  border-radius: 5px; border: 1px solid #ccc;
 }
-/* --- Utility Class --- */
-.hidden {
-  display: none !important;
-}
-/* --- Image Buttons --- */
-.image-button {
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.image-button img {
-  display: block;
-  height: auto;
-  width: auto;
-  max-height: 56px;
-}
+.back-button:hover { background-color: #ddd; }
