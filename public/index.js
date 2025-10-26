@@ -102,26 +102,36 @@
 
   // --- Swap image-button sources on press for visual feedback ---
   function setupImageButtonPressState(button) {
-    const img = button?.querySelector('img');
-    if (!img) return;
-    const defaultSrc = img.dataset.defaultSrc || img.getAttribute('src');
-    const pressedSrc = img.dataset.pressedSrc || defaultSrc;
-    const setPressed = () => { img.src = pressedSrc; };
-    const setDefault = () => { img.src = defaultSrc; };
+  const img = button?.querySelector('img');
+  if (!img) return;
 
-    button.addEventListener('mousedown', setPressed);
-    button.addEventListener('touchstart', setPressed, { passive: true });
-    button.addEventListener('mouseup', setDefault);
-    button.addEventListener('mouseleave', setDefault);
-    button.addEventListener('touchend', setDefault);
-    button.addEventListener('touchcancel', setDefault);
-    button.addEventListener('keydown', (e) => {
-      if (e.key === ' ' || e.key === 'Enter') setPressed();
-    });
-    button.addEventListener('keyup', (e) => {
-      if (e.key === ' ' || e.key === 'Enter') setDefault();
-    });
-  }
+  const defaultSrc = img.dataset.defaultSrc || img.getAttribute('src');
+  const pressedSrc = img.dataset.pressedSrc || defaultSrc;
+
+  const setPressed = () => { img.src = pressedSrc; };
+  const setDefault = () => { img.src = defaultSrc; };
+
+  // --- Mouse/touch press events ---
+  button.addEventListener('mousedown', setPressed);
+  button.addEventListener('touchstart', setPressed, { passive: true });
+  button.addEventListener('mouseup', setDefault);
+  button.addEventListener('mouseleave', setDefault);
+  button.addEventListener('touchend', setDefault);
+  button.addEventListener('touchcancel', setDefault);
+
+  // --- Keyboard press events ---
+  button.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') setPressed();
+  });
+  button.addEventListener('keyup', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') setDefault();
+  });
+
+  // --- Hover events (added) ---
+  button.addEventListener('mouseenter', setPressed);
+  button.addEventListener('mouseleave', setDefault);
+}
+
 
   // Initialize pressed-state behavior for image buttons
   setupImageButtonPressState(viewGalleryButton);
