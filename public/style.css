@@ -129,13 +129,19 @@ video {
 }
 
 #resultsSection {
-  width: 90%;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  margin-top: 20px;
+    /* Apply semi-transparent background and border */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    border: 4px solid #333; /* 4px dark grey border */
+
+    /* Keep existing styles */
+    width: 90%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+    max-width: 800px; /* Keep or adjust max-width as needed */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
 #resultsSection + .image-button {
@@ -163,7 +169,7 @@ video {
 .status-invasive { background-color: #d93025; }
 .status-native { background-color: #1e8e3e; }
 .status-endangered { background-color: #f9aa00; color: #333; }
-.status-common { background-color: #5f6368; }
+.status-common { background-color: #36393d; }
 
 /* --- Gallery --- */
 #galleryContainer {
@@ -173,7 +179,7 @@ video {
     justify-content: center;
     width: 100%;
     padding-top: 140px;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
 }
 /* Style for individual items in gallery.html */
 .gallery-item {
@@ -243,20 +249,21 @@ video {
 
 /* Styles for the detail page */
 /* Styles for the detail page */
+/* Styles for the detail page */
 .detail-section {
-    /* Apply same background and border as gallery items */
+    /* Apply background and border */
     background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
     border: 4px solid #333; /* 4px dark grey border */
 
     /* Keep existing styles */
     width: 90%;
-    max-width: 800px; /* Keep or adjust max-width */
+    max-width: 800px; /* Your desired max-width */
     padding: 20px;
-    border-radius: 8px; /* Keep existing rounding */
+    border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 20px auto;
-    box-sizing: border-box; /* Add this */
+    box-sizing: border-box; /* Keep this */
 }
 
 /* Keep the rule for the image inside the detail section as is */
