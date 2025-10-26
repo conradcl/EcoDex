@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         galleryContainer.innerHTML = "";
 
         if (!Array.isArray(gallery) || gallery.length === 0) {
-            galleryContainer.innerHTML = "<p>No sightings saved yet!</p>";
+            galleryContainer.innerHTML = "<p></p>";
             return;
         }
 
