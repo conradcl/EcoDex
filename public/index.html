@@ -10,49 +10,30 @@
   <body>
     <h1>EcoDex</h1>
 
-    <div class="controls-grid"> 
-<div class="left-controls">
-        
-<button id="startCameraButton" class="image-button big-square" aria-label="Start Camera">
-          <img
-            src="images/photo-button.png" 
-            alt="Start Camera"
-            data-default-src="images/photo-button.png" 
-            data-pressed-src="images/photo-button-pressed.png" 
-          />
-        </button>
-
-        
-<button id="uploadTriggerButton" class="image-button wide" aria-label="Upload Photo">
-          <img
-            src="images/upload-button.png" 
-            alt="Upload Photo"
-            data-default-src="images/upload-button.png" 
-            data-pressed-src="images/upload-button-pressed.png" 
-          />
-        </button>
-        
-<input type="file" id="imageUploader" accept="image/*" class="hidden"/> 
-</div>
-
+    <div class="controls-grid">
+      <div class="left-controls">
+        <button id="startCameraButton" class="big-square">Start Camera</button>
+    
+        <label for="imageUploader" class="upload-button wide">Upload Photo</label>
+        <input type="file" id="imageUploader" accept="image/*" />
+      </div>
+    
       <div class="right-controls">
-        
-<button id="viewGalleryButton" class="image-button" aria-label="View My Sightings">
+        <button id="viewGalleryButton" class="image-button" aria-label="View My Sightings">
           <img
-            src="images/gallery-button.png" 
+            src="/images/gallery-button.png"
             alt="View My Sightings"
-            data-default-src="images/gallery-button.png" 
-            data-pressed-src="images/gallery-button-pressed.png" 
+            data-default-src="/images/gallery-button.png"
+            data-pressed-src="/images/gallery-button-pressed.png"
           />
         </button>
-
-        
-<button id="updateLocationButton" class="image-button" aria-label="Update Location">
+    
+        <button id="updateLocationButton" class="image-button" aria-label="Update Location">
           <img
-            src="images/location-button.png" 
+            src="/images/location-button.png"
             alt="Update Location"
-            data-default-src="images/location-button.png" 
-            data-pressed-src="images/location-button-pressed.png" 
+            data-default-src="/images/location-button.png"
+            data-pressed-src="/images/location-button-pressed.png"
           />
         </button>
       </div>
