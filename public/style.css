@@ -94,16 +94,6 @@ video {
   margin-bottom: 15px;
 }
 
-#pokemonSprite {
-  width: 128px; /* Set a fixed size for the sprite */
-  height: 128px;
-  margin-bottom: 15px;
-  /* This makes pixel art look sharp, not blurry */
-  image-rendering: pixelated; 
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-}
-
 #statusTag {
   padding: 5px 12px;
   border-radius: 15px;
