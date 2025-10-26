@@ -124,7 +124,7 @@ video {
 
 #resultsSection {
   width: 90%;
-  padding: 15px;
+  padding: 20px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -133,8 +133,9 @@ video {
 }
 
 #previewImage {
-  width: 100%;
-  max-width: 400px;
+  width: 90%;
+  max-height: 200px;
+  object-fit: contain;
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -197,7 +198,6 @@ video {
 /* Styles for the detail page */
 .detail-section {
     width: 90%;
-    max-width: 500px;
     padding: 20px;
     background-color: white;
     border-radius: 8px;
@@ -207,8 +207,9 @@ video {
 }
 
 .detail-section img {
-    width: 100%;
-    max-width: 400px;
+   width: 90%;
+    max-height: 200px;
+    object-fit: contain;
     border-radius: 8px;
     margin-bottom: 15px;
     border: 1px solid #eee; /* Add a light border */
