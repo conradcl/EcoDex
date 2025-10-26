@@ -6,8 +6,11 @@ body {
   justify-content: flex-start; /* keep content near the top */
   min-height: 100vh;         /* full screen height for layout stability */
   padding: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
   background-color: #f4f4f4;
   color: #333;
+
 }
 
 h1, h2 {
@@ -54,7 +57,7 @@ h1, h2 {
 
 /* --- Camera Button (Left Side, PNG Style) --- */
 #startCameraButton img {
-  width: 360px;  /* adjust as needed (try 320–400px for big square) */
+  width: 320px;  /* adjust as needed (try 320–400px for big square) */
   height: auto;
   object-fit: contain;
   image-rendering: pixelated;
@@ -64,7 +67,7 @@ h1, h2 {
 
 /* --- Upload Button Below It --- */
 #uploadButton img {
-  width: 360px;
+  width: 320px;
   height: auto;
   object-fit: contain;
   image-rendering: pixelated;
@@ -83,7 +86,7 @@ h1, h2 {
 
 /* Make image buttons same size visually */
 .right-controls .image-button img {
-  width: 360px; 
+  width: 320px; 
   height: auto;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
