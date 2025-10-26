@@ -16,6 +16,24 @@ h1, h2 {
   text-align: center;
 }
 
+.static-top, .static-bottom {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  z-index: 999; /* Keep above other elements */
+}
+
+.static-top {
+  top: 0;
+}
+
+.static-bottom {
+  bottom: 0;
+}
+
 /* --- Layout Grid for Controls --- */
 .controls-grid {
   display: grid;
