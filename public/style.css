@@ -178,3 +178,19 @@ video {
 .hidden {
   display: none !important;
 }
+/* --- Image Buttons --- */
+.image-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-button img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: 56px;
+}

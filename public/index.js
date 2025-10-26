@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
   // --- Prompt for location immediately when site loads (no popup message) ---
   requestUserLocation(false); // false = silent mode on load
 
@@ -85,18 +85,44 @@ document.addEventListener("DOMContentLoaded", () => {
               accuracy: Math.round(accuracy ?? 0),
             })
           );
-          console.log("📍 Location stored:", latitude, longitude);
-          if (showAlert) alert("✅ Location updated!");
+          console.log("ðŸ“ Location stored:", latitude, longitude);
+          if (showAlert) alert("âœ… Location updated!");
         },
         (err) => {
-          console.warn("⚠️ Location permission denied or unavailable:", err);
-          if (showAlert) alert("⚠️ Could not update location. Please enable permissions.");
+          console.warn("âš ï¸ Location permission denied or unavailable:", err);
+          if (showAlert) alert("âš ï¸ Could not update location. Please enable permissions.");
         },
         { enableHighAccuracy: true, timeout: 7000, maximumAge: 0 }
       );
     } else {
-      console.warn("❌ Geolocation not supported in this browser.");
-      if (showAlert) alert("❌ Geolocation not supported in this browser.");
+      console.warn("âŒ Geolocation not supported in this browser.");
+      if (showAlert) alert("âŒ Geolocation not supported in this browser.");
     }
   }
-});
+
+  // --- Swap image-button sources on press for visual feedback ---
+  function setupImageButtonPressState(button) {
+    const img = button?.querySelector('img');
+    if (!img) return;
+    const defaultSrc = img.dataset.defaultSrc || img.getAttribute('src');
+    const pressedSrc = img.dataset.pressedSrc || defaultSrc;
+    const setPressed = () => { img.src = pressedSrc; };
+    const setDefault = () => { img.src = defaultSrc; };
+
+    button.addEventListener('mousedown', setPressed);
+    button.addEventListener('touchstart', setPressed, { passive: true });
+    button.addEventListener('mouseup', setDefault);
+    button.addEventListener('mouseleave', setDefault);
+    button.addEventListener('touchend', setDefault);
+    button.addEventListener('touchcancel', setDefault);
+    button.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') setPressed();
+    });
+    button.addEventListener('keyup', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') setDefault();
+    });
+  }
+
+  // Initialize pressed-state behavior for image buttons
+  setupImageButtonPressState(viewGalleryButton);
+  setupImageButtonPressState(updateLocationButton);});

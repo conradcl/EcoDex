@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,10 +16,24 @@
       <label for="imageUploader" class="upload-button">Upload Photo</label>
       <input type="file" id="imageUploader" accept="image/*" />
 
-      <button id="viewGalleryButton" class="secondary">View My Sightings</button>
+      <button id="viewGalleryButton" class="image-button" aria-label="View My Sightings">
+        <img
+          src="/images/gallery-button.png"
+          alt="View My Sightings"
+          data-default-src="/images/gallery-button.png"
+          data-pressed-src="/images/gallery-button-pressed.png"
+        />
+      </button>
 
-      <!-- 🆕 New button to manually re-prompt location -->
-      <button id="updateLocationButton" class="secondary">Update Location</button>
+      <!-- New button to manually re-prompt location -->
+      <button id="updateLocationButton" class="image-button" aria-label="Update Location">
+        <img
+          src="/images/location-button.png"
+          alt="Update Location"
+          data-default-src="/images/location-button.png"
+          data-pressed-src="/images/location-button-pressed.png"
+        />
+      </button>
     </div>
 
     <div id="cameraView" class="camera-view hidden">
