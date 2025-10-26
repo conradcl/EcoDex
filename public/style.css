@@ -57,12 +57,12 @@ h1, h2 {
   align-items: center;
   justify-content: center;
   gap: 15px;
-  margin-top: 10vh;
+  margin-top: 20vh;
 }
 
 /* --- Camera Button (Left Side, PNG Style) --- */
 #startCameraButton img {
-  width: 320px;  /* adjust as needed (try 320–400px for big square) */
+  width: 320px;
   height: auto;
   object-fit: contain;
   image-rendering: pixelated;
@@ -87,7 +87,7 @@ h1, h2 {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin-top: 10vh;
+  margin-top: 20vh;
 }
 
 /* Make image buttons same size visually */
