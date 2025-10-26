@@ -174,25 +174,46 @@ video {
     width: 100%;
     margin-top: 20px;
 }
+/* Style for individual items in gallery.html */
 .gallery-item {
-    background-color: white;
-    border-radius: 8px;
+    /* Updated Background */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    
+    /* Added Border */
+    border: 4px solid #333; /* 4px dark grey border */
+    
+    border-radius: 8px; /* Keep existing rounding */
     padding: 10px;
-    text-align: center;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-.gallery-item img {
-    width: 80px;
-    height: 80px;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-}
-.gallery-item p {
-    margin: 5px 0 0 0;
-    font-size: 0.9em;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: calc(50% - 25px);
+    max-width: 250px;
+    box-sizing: border-box; /* Include border and padding in width calculation */
 }
 
+/* Keep hover/clickable styles */
+.gallery-item.clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gallery-item.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Keep image and text styles */
+.gallery-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    image-rendering: auto;
+}
+.gallery-info p {
+    margin: 2px 0;
+}
 /*
 #galleryContainer + .image-button {
   margin-top: 20px;
@@ -220,24 +241,34 @@ video {
 }
 
 /* Styles for the detail page */
+/* Styles for the detail page */
 .detail-section {
+    /* Apply same background and border as gallery items */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    border: 4px solid #333; /* 4px dark grey border */
+
+    /* Keep existing styles */
     width: 90%;
+    max-width: 500px; /* Keep or adjust max-width */
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
+    border-radius: 8px; /* Keep existing rounding */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 20px auto;
+    box-sizing: border-box; /* Add this */
 }
 
+/* Keep the rule for the image inside the detail section as is */
 .detail-section img {
-    width: 90%;
+    width: 90%; /* Or width: 100%; max-width: 400px; */
     max-height: 20vh;
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 15px;
+    /* Removed border: 1px solid #eee; as the section now has a border */
 }
 
+/* Keep the sighting-info style as is */
 .sighting-info {
     font-size: 0.9em;
     color: #555;
