@@ -116,6 +116,21 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("Back button element with ID 'backButton' not found!");
     }
+// --- Clear Gallery Button ---
+const clearButton = document.getElementById("clearGalleryButton");
+
+if (clearButton) {
+  clearButton.addEventListener("click", () => {
+    const confirmClear = confirm("Are you sure you want to clear all saved sightings?");
+    if (confirmClear) {
+      localStorage.removeItem("ecoDexGallery"); // remove the saved gallery
+      galleryContainer.innerHTML = "<p>Gallery cleared.</p>";
+      console.log("Gallery data cleared from localStorage.");
+    }
+  });
+} else {
+  console.error("Clear Gallery button not found!");
+}
 
     // Load the gallery when the page finishes loading
     loadGallery();
