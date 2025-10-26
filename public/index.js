@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Prompt for location immediately when site loads ---
-  requestUserLocation();
+  // --- Prompt for location immediately when site loads (no popup message) ---
+  requestUserLocation(false); // false = silent mode on load
 
   // --- Element references ---
   const startButton = document.getElementById("startCameraButton");
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   viewGalleryButton.addEventListener("click", () => {
     window.location.href = "gallery.html";
   });
-  updateLocationButton.addEventListener("click", requestUserLocation); // 🆕 manual re-prompt
+  updateLocationButton.addEventListener("click", () => requestUserLocation(true)); // true = show alert
 
   // --- Camera & Upload Functions ---
   async function startCamera() {
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Location request logic (used on load + button click) ---
-  function requestUserLocation() {
+  function requestUserLocation(showAlert = false) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
@@ -86,17 +86,17 @@ document.addEventListener("DOMContentLoaded", () => {
             })
           );
           console.log("📍 Location stored:", latitude, longitude);
-          alert("✅ Location updated!");
+          if (showAlert) alert("✅ Location updated!");
         },
         (err) => {
           console.warn("⚠️ Location permission denied or unavailable:", err);
-          alert("⚠️ Could not update location. Please enable permissions.");
+          if (showAlert) alert("⚠️ Could not update location. Please enable permissions.");
         },
         { enableHighAccuracy: true, timeout: 7000, maximumAge: 0 }
       );
     } else {
       console.warn("❌ Geolocation not supported in this browser.");
-      alert("❌ Geolocation not supported in this browser.");
+      if (showAlert) alert("❌ Geolocation not supported in this browser.");
     }
   }
 });
